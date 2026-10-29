@@ -21,11 +21,14 @@ double divide(double a, double b) {
         return std::numeric_limits<double>::quiet_NaN();
     }
 }
-
+double mean(double a, double b) {
+    return divide(sum(a, b), 2.0);
+}
 int main() {
     std::cout << "Sum: " << sum(10, 5) << std::endl;
     std::cout << "Subtract: " << subtract(10, 5) << std::endl;
     std::cout << "Multiply: " << multiply(10, 5) << std::endl;
     std::cout << "Divide: " << divide(10, 5) << std::endl;
+    std::cout << "Mean: " << mean(10, 20) << std::endl;
     return 0;
 }
