@@ -16,19 +16,53 @@ double multiply(double a, double b) {
 double divide(double a, double b) {
     if (b != 0.0) {
         return a / b;
-    } else {
-        std::cout << "Error: Division by zero!" << std::endl;
-        return std::numeric_limits<double>::quiet_NaN();
     }
+    std::cout << "Error: Division by zero!"
+              << std::endl;
+    return std::numeric_limits<double>::quiet_NaN();
 }
+
 double mean(double a, double b) {
     return divide(sum(a, b), 2.0);
 }
+
 int main() {
-    std::cout << "Sum: " << sum(10, 5) << std::endl;
-    std::cout << "Subtract: " << subtract(10, 5) << std::endl;
-    std::cout << "Multiply: " << multiply(10, 5) << std::endl;
-    std::cout << "Divide: " << divide(10, 5) << std::endl;
-    std::cout << "Mean: " << mean(10, 20) << std::endl;
+    char operation;
+    double a, b, result;
+
+    std::cout << "Choose operation (+, -, *, /, m): ";
+    if (!(std::cin >> operation)) {
+        std::cout << "Invalid input!" << std::endl;
+        return 1;
+    }
+
+    std::cout << "Enter two numbers: ";
+    if (!(std::cin >> a >> b)) {
+        std::cout << "Invalid input!" << std::endl;
+        return 1;
+    }
+
+    if (operation == '+') {
+        result = sum(a, b);
+    } else if (operation == '-') {
+        result = subtract(a, b);
+    } else if (operation == '*') {
+        result = multiply(a, b);
+    } else if (operation == '/') {
+        if (b == 0.0) {
+            std::cout << "Error: Division by zero!"
+                      << std::endl;
+            return 1;
+        }
+        result = divide(a, b);
+    } else if (operation == 'm') {
+        result = mean(a, b);
+    } else {
+        std::cout << "Invalid operation!"
+                  << std::endl;
+        return 1;
+    }
+
+    std::cout << "Result: " << result << std::endl;
     return 0;
 }
